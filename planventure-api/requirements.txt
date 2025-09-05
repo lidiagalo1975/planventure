@@ -1,5 +1,11 @@
 # Core dependencies
-flask==2.3.3
-flask-sqlalchemy==3.1.1
-flask-cors==4.0.0
-python-dotenv==1.0.0
+Flask>=2.0
+Flask-SQLAlchemy>=2.5
+Flask-Cors>=3.0
+python-dotenv>=0.19
+
+# JWT authentication
+Flask-JWT-Extended>=4.4
+
+# Password hashing (recommended for user auth)
+bcrypt>=3.2
