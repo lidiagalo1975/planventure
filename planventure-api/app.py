@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
 import os
 
@@ -13,12 +14,13 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default-secret-key')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///planventure.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY', 'jwt-secret-key')  # New JWT config
 
-# Initialize SQLAlchemy
+# Initialize extensions
 db = SQLAlchemy(app)
+jwt = JWTManager(app)  # Initialize JWT
 
-# Import models here to avoid circular imports
-from models import User
+
 
 CORS(app, origins=os.getenv('CORS_ORIGINS', '*'))
 
